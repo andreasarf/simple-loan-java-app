@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  redis:
+    image: redis:alpine
+    command: redis-server
+    ports:
+      - "49153:6379"
+    environment:
+      - REDIS_REPLICATION_MODE=master
+  mysql:
+    image: mysql:8.0.30
+    ports:
+      - "33061:3306"
+    environment:
+      MYSQL_DATABASE: loan_app
+      MYSQL_USER: app
+      MYSQL_PASSWORD: pwd
+      MYSQL_ROOT_PASSWORD: root
+#    volumes:
+#      - ./db_scripts/init.sql:/docker-entrypoint-initdb.d/1.sql
+#      # persistence in the local machine. The folder must be put into .gitignore file
+#      - ./my-db/loan_app:/var/lib/mysql
+#  zookeeper:
+#    image: confluentinc/cp-zookeeper:latest
+#    environment:
+#      ZOOKEEPER_CLIENT_PORT: 2181
+#      ZOOKEEPER_TICK_TIME: 2000
+#    ports:
+#      - "22181:2181"
+#  kafka:
+#    image: confluentinc/cp-kafka:latest
+#    depends_on:
+#      - zookeeper
+#    ports:
+#      - "29092:29092"
+#    environment:
+#      KAFKA_BROKER_ID: 1
+#      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+#      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+#      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+#      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+#      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1

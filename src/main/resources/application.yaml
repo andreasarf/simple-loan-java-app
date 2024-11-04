@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: simple-loan-app
+#  kafka:
+#    bootstrap-servers: localhost:29092
+#    consumer:
+#      group-id: simple-loan-app
+#      auto-offset-reset: latest
+#      enable-auto-commit: true
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} %clr(%-5level){highlight} - %clr([%thread] [%X{traceId}] [%X{spanId}] [%X{sourceId}]){magenta} %clr(%logger{0}){cyan} : %msg %exception %nopex %n"
+
+redis:
+  host: redis://localhost:49153
+  password:
+
